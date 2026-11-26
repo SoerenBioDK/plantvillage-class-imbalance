@@ -2,10 +2,25 @@
 
 Code for the report on class-imbalance handling (weighted loss, focal loss, oversampling) for a
 ResNet-18 on the Pepper, Potato and Tomato subset of PlantVillage (15 classes).
+Deep Learning for Visual Recognition, Aarhus University, Group 27.
 
-Runs on Google Colab with the project folder on Google Drive
-(`PROJECT_ROOT` in the notebooks, `PROJECT_DIR` in `src/dataset.py`).
-Put `plant_data.zip` (the PlantVillage images) in that folder. Checkpoints are not included.
+## How to run (Google Colab)
+
+1. Open a Colab notebook with a GPU and clone the repository:
+   ```python
+   !git clone https://github.com/SoerenBioDK/plantvillage-class-imbalance.git /content/project
+   ```
+2. Download the images from Kaggle (https://www.kaggle.com/datasets/emmarex/plantdisease) and
+   upload them to `/content/project` as `plant_data.zip` (it must contain the folder
+   `PlantVillage` with the class folders).
+3. Change the Google Drive path to `/content/project` in two places: `PROJECT_DIR` in
+   `src/dataset.py` (line 11), and `PROJECT_ROOT` in cell 1 of `src/Experiments_v2.ipynb`
+   (also delete the `drive.mount` lines there). The notebooks in `frac_f02`, `frac_f05` and
+   `frac_f10` have the same line.
+4. Open `src/Experiments_v2.ipynb` in Colab (File, Open notebook, GitHub) and run from cell 1.
+
+The final split is already in `splits.json`, so skip the cell that builds the split. Model weights
+are not included, so the cells that load `checkpoints/` cannot be run; their results are in `runs/`.
 
 ## Files
 
@@ -51,6 +66,5 @@ Seeds 0, 42 and 123, 10 epochs, batch size 32.
 | `src/` | Modules and the notebooks above (`Experiments.ipynb` and `Setup_and_Modules.ipynb` are the first versions) |
 | `runs/` | Results, analyses and `experiment_log.csv` |
 | `frac_f02`, `frac_f05`, `frac_f10` | Reduced-data runs and the notebook that produced them |
-| `figures/`, `Appendix figures/` | Report figures |
-| `early_work/` | Course lab notebooks and the first data loader |
+| `figures/` | Report figures |
 | `splits*.json`, `split_groups_*.csv` | Split files (`splits.json` is the final one) |
